@@ -7,15 +7,9 @@ Simple web application for password hashing using Flask and Werkzeug.
 - Docker
 - Docker Compose
 
-## Installation and Setup
+## Quick Start
 
-1. Clone this repository:
-```bash
-git clone https://github.com/your-username/HashZeugUI.git
-cd HashZeugUI
-```
-
-2. Start the application with Docker Compose:
+Start the application with Docker Compose:
 ```bash
 docker-compose up -d
 ```
@@ -31,13 +25,22 @@ The application will be available at: http://localhost:8132
 
 ## Development
 
-For developers who want to modify the application:
+If you want to modify the application:
 
-- Code changes are automatically reflected thanks to the mounted volume in Docker
-- Application logs can be viewed with:
+1. Clone this repository:
 ```bash
-docker-compose logs -f
+git clone https://github.com/your-username/HashZeugUI.git
+cd HashZeugUI
 ```
+
+2. Make your changes to the source code
+
+3. Build and push using GitHub Actions workflow
+   - The workflow automatically:
+     * Runs security audit
+     * Builds multi-architecture Docker images
+     * Pushes to Docker Hub
+     * Updates Docker Hub description
 
 ## Project Structure
 
@@ -58,3 +61,14 @@ HashZeugUI/
 - Werkzeug
 - Docker
 - HTML/CSS
+
+## Docker Image
+
+The application is available as a Docker image:
+```bash
+docker pull tiritibambix/hashzeugui:latest
+```
+
+You can run it directly with:
+```bash
+docker run -d -p 8132:5000 tiritibambix/hashzeugui:latest

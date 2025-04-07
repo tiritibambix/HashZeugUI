@@ -1,11 +1,9 @@
 services:
-  web:
-    build: .
+  hashzeugui:
+    image: tiritibambix/hashzeugui:latest
     container_name: hashzeugui
     ports:
       - "8132:5000"
-    volumes:
-      - .:/app
     environment:
       - FLASK_ENV=development
       - FLASK_DEBUG=1
