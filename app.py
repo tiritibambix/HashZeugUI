@@ -8,7 +8,7 @@ def index():
     hash_result = None
     if request.method == 'POST':
         password = request.form['password']
-        hash_result = generate_password_hash(password)
+        hash_result = generate_password_hash(password, method='pbkdf2:sha256:600000', salt_length=16)
     return render_template('index.html', hash_result=hash_result)
 
 if __name__ == '__main__':
