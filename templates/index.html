@@ -51,6 +51,25 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        .hash-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hash-text {
+            word-break: break-all;
+            flex-grow: 1;
+        }
+        .copy-button {
+            flex-shrink: 0;
+            background-color: #28a745;
+        }
+        .copy-button:hover {
+            background-color: #218838;
+        }
+        .copied {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -63,8 +82,26 @@
     {% if hash_result %}
     <div class="result">
         <h2>Generated Hash:</h2>
-        <p style="word-break: break-all;">{{ hash_result }}</p>
+        <div class="hash-container">
+            <p id="hashText" class="hash-text">{{ hash_result }}</p>
+            <button onclick="copyHash()" class="copy-button">Copy</button>
+        </div>
     </div>
     {% endif %}
+
+    <script>
+        function copyHash() {
+            const hashText = document.getElementById('hashText').textContent;
+            navigator.clipboard.writeText(hashText).then(() => {
+                const copyButton = document.querySelector('.copy-button');
+                copyButton.textContent = 'Copied!';
+                copyButton.classList.add('copied');
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy';
+                    copyButton.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
